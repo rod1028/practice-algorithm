@@ -1,9 +1,10 @@
 package evaluatearithexpress;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Stack;
 import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
 
 /**
  * https://www.interviewbit.com/problems/evaluate-expression/
@@ -17,12 +18,8 @@ import java.util.function.BiFunction;
  * ["4", "13", "5", "/", "+"] -> (4 + (13 / 5)) -> 6
  */
 public class EvaluateArithExpression {
-    public static void main(String[] args) {
-
-    }
-
-    private static HashMap<String, BiFunction<Integer, Integer, Integer>> table =
-            new HashMap<String, BiFunction<Integer, Integer, Integer>>() {
+    private static HashMap<String, BinaryOperator<Integer>> table =
+            new HashMap<String, BinaryOperator<Integer>>() {
                 {
                     put("+", (Integer a, Integer b) -> a + b);
                     put("-", (Integer a, Integer b) -> a - b);
@@ -31,12 +28,7 @@ public class EvaluateArithExpression {
                 }
             };
 
-//    private static ArrayList<String> importantOp = new ArrayList<String>() {{
-//        add("*");
-//        add("/");
-//    }};
-
-    private static void doNextOp(Stack<Integer> numbers, Stack<String> ops) {
+    private static void doNextOp(ArrayDeque<Integer> numbers, ArrayDeque<String> ops) {
         String opStr = ops.pop();
         BiFunction<Integer, Integer, Integer> op = table.get(opStr);
         int b = numbers.pop();
@@ -45,21 +37,19 @@ public class EvaluateArithExpression {
         numbers.push(c);
     }
 
-    public int evalRPN(ArrayList<String> A) {
-        if (A == null || A.size() == 0) {
+    public int evalRPN(ArrayList<String> reversePolishList) {
+        if (reversePolishList == null || reversePolishList.size() == 0) {
             return Integer.MIN_VALUE;
         }
-        if (A.size() == 1) {
-            return Integer.valueOf(A.get(0));
+        if (reversePolishList.size() == 1) {
+            return Integer.valueOf(reversePolishList.get(0));
         }
 
-        Stack<Integer> numbers = new Stack<>();
-        Stack<String> ops = new Stack<>();
+        ArrayDeque<Integer> numbers = new ArrayDeque<>();
+        ArrayDeque<String> ops = new ArrayDeque<>();
 
-        for (String s : A) {
+        for (String s : reversePolishList) {// reversePolishList.forEach(s -> {
             boolean isOperator = table.containsKey(s);
-//            boolean isImpOperator = isOperator && importantOp.contains(s);
-
             if (isOperator) {
                 ops.push(s);
 
@@ -74,6 +64,6 @@ public class EvaluateArithExpression {
             doNextOp(numbers, ops);
         }
 
-        return numbers.get(0);
+        return numbers.getFirst();
     }
 }
