@@ -1,4 +1,4 @@
-package com.cracking.maxsubmatrix;
+package cracking.maxsubmatrix;
 
 import java.security.InvalidParameterException;
 

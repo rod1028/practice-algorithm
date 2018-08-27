@@ -1,4 +1,4 @@
-package com.cracking.listcycle;
+package cracking.listcycle;
 
 /**
  * https://www.interviewbit.com/problems/list-cycle/

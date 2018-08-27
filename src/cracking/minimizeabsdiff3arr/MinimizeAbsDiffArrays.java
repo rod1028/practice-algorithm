@@ -1,4 +1,4 @@
-package com.cracking.minimizeabsdiff3arr;
+package cracking.minimizeabsdiff3arr;
 
 import java.util.ArrayList;
 import java.util.HashMap;

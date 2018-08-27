@@ -1,4 +1,4 @@
-package com.cracking.circustower;
+package cracking.circustower;
 
 import java.util.ArrayList;
 import java.util.Arrays;

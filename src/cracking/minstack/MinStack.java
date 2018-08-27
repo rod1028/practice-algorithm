@@ -1,4 +1,4 @@
-package com.cracking.minstack;
+package cracking.minstack;
 
 import java.util.ArrayDeque;
 

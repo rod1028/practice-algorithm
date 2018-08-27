@@ -1,4 +1,4 @@
-package com.cracking.sparsesimilarity;
+package cracking.sparsesimilarity;
 
 import java.util.*;
 

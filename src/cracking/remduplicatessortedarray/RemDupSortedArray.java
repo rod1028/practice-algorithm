@@ -1,4 +1,4 @@
-package com.cracking.remduplicatessortedarray;
+package cracking.remduplicatessortedarray;
 
 import java.util.ArrayList;
 import java.util.Collections;

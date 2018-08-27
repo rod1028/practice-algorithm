@@ -1,4 +1,4 @@
-package com.cracking.babynames;
+package cracking.babynames;
 
 import java.util.ArrayList;
 import java.util.HashMap;
