@@ -1,8 +1,79 @@
 package interviewbit.strstr;
 
-/**
+/*
  * https://www.interviewbit.com/problems/implement-strstr/
+ * best algorithms are KMP and Boyer-Moore
  */
+
+/**
+ * KMP algorithm
+ * https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm
+ * https://www.youtube.com/watch?v=V5-7GzOfADQ&
+ * https://www.geeksforgeeks.org/searching-for-patterns-set-2-kmp-algorithm/
+ */
+class KMP {
+    private int[] buildTable(final String needle) {
+        int len = 0;//longest previous suffix
+        int[] result = new int[needle.length()];
+
+        result[0] = 0;
+        int i = 1;
+        while (i < needle.length()) {
+            if (needle.charAt(i) == needle.charAt(len)) {
+                len++;
+                result[i] = len;
+                i++;
+                continue;
+            }
+
+            //move back the pointer "len" until we find a
+            //new suffix that ends at needle[i], if any
+            while ((needle.charAt(i) != needle.charAt(len)) &&
+                    len > 0) {
+                len = result[len - 1];
+            }
+
+            result[i] = len;
+            i++;
+        }
+
+        return result;
+    }
+
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int strStr(final String haystack, final String needle) {
+        int needLen = needle.length();
+        int haysLen = haystack.length();
+
+        if (needLen == 0 || haysLen == 0 || needLen > haysLen) {
+            return -1;
+        }
+        int[] failures = buildTable(needle);
+
+        int hayPos = 0;
+        int nee = 0;
+
+        while (hayPos < haysLen && nee < needLen) {
+            if (haystack.charAt(hayPos) == needle.charAt(nee)) {
+                hayPos++;
+                nee++;
+                continue;
+            }
+            //they do not match
+            if (nee == 0) {//no need to reset the needle
+                hayPos++;
+                continue;
+            }
+            nee = failures[nee - 1];
+        }
+
+
+        if (nee == needLen) {
+            return hayPos - needLen;
+        }
+        return -1;
+    }
+}
 
 //inneficient algorithm with a small improvement for jumps
 public class StrStr {
