@@ -3,6 +3,19 @@ package cracking.lettersandnumbers;
 import java.util.Arrays;
 import java.util.HashMap;
 
+/**
+ * Find the longest substring that contains the same numbers of letters and numbers.
+ * We keep 2 counts and their diff for each position in the input string.
+ * We keep a map with their first diff appeareance.
+ * INPUT    1aaa111aa1
+ * LETTERS  0123333455
+ * DIGITS   1111234445
+ * DIFF    -101210-1010
+ * firstDiffIndex = {-1:0,0:1,1:2,2:2}
+ * <p>
+ * When we find a value that already exists in the firstDiffIndex itmeans the same number of
+ * DIG and LET were added between the 2 indexs, so is a valid substring.
+ */
 public class LettersAndNumbers {
     private static boolean isDigit(char c) {
         //only for ASCII digits

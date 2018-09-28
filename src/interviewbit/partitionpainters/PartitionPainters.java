@@ -30,7 +30,7 @@ import java.util.Collections;
  * Output : 50
  */
 //Guessing the result, for each one a linear operation is done
-//let K = sum(boards) - max(boards) and n=count(boards) time: O(K*n) space O(1)
+//let K = sum(boards) - max(boards) and n=count(boards) time: O(lgK * n) space O(1)
 public class PartitionPainters {
     public int paint(int painters, int time, ArrayList<Integer> boards) {
         if (painters == 0) {

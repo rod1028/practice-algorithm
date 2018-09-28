@@ -3,6 +3,19 @@ package interviewbit.searchforarange;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
+ * https://www.interviewbit.com/problems/search-for-a-range/
+ * <p>
+ * Given a sorted array of integers, find the starting and ending position of a given target value.
+ * Your algorithm’s runtime complexity must be in the order of O(log n).
+ * If the target is not found in the array, return [-1, -1].
+ * <p>
+ * Example:
+ * Given [5, 7, 7, 8, 8, 10]
+ * and target value 8,
+ * return [3, 4].
+ */
 public class SearchForARange {
     private static int findDuplicate(final List<Integer> a, int left,
                                      int right, int target, boolean searchLeft) {
